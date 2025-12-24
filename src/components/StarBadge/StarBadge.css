@@ -1,3 +1,219 @@
-.star {
-  font-size: 18px;
+/* StarBadge.css */
+.star-badge {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  border-radius: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.star-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Rank-specific colors */
+.badge-eternal-sage::before { background: linear-gradient(90deg, #E5E4E2, #B9F2FF, #FFD700); }
+.badge-platinum::before { background-color: #E5E4E2; }
+.badge-sapphire::before { background-color: #0F52BA; }
+.badge-diamond::before { background-color: #B9F2FF; }
+.badge-gold::before { background-color: #FFD700; }
+.badge-ruby::before { background-color: #E0115F; }
+.badge-silver::before { background-color: #C0C0C0; }
+.badge-rising::before { background-color: #FFA500; }
+
+/* Size variants */
+.star-badge.size-small {
+  padding: 10px;
+  max-width: 220px;
+}
+
+.star-badge.size-medium {
+  padding: 16px;
+  max-width: 300px;
+}
+
+.star-badge.size-large {
+  padding: 20px;
+  max-width: 380px;
+}
+
+/* Badge container */
+.badge-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Icon container */
+.badge-icon-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.size-small .badge-icon-container {
+  width: 48px;
+  height: 48px;
+}
+
+.size-large .badge-icon-container {
+  width: 72px;
+  height: 72px;
+}
+
+.badge-icon {
+  width: 60%;
+  height: 60%;
+  color: white;
+}
+
+/* Badge content */
+.badge-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.badge-rank {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.size-small .badge-rank {
+  font-size: 1rem;
+}
+
+.size-large .badge-rank {
+  font-size: 1.5rem;
+}
+
+.badge-stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  color: #495057;
+}
+
+.size-small .badge-stars {
+  font-size: 0.85rem;
+}
+
+.size-large .badge-stars {
+  font-size: 1.1rem;
+}
+
+.star-icon {
+  font-size: 1.1em;
+}
+
+.star-count {
+  font-weight: 700;
+  color: #212529;
+}
+
+.star-label {
+  color: #6c757d;
+}
+
+/* Progress bar */
+.rank-progress-container {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e9ecef;
+}
+
+.rank-progress-label {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.rank-progress-bar {
+  height: 8px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.rank-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s ease-in-out;
+}
+
+.rank-progress-text {
+  font-size: 0.8rem;
+  color: #495057;
+  font-weight: 500;
+  text-align: right;
+}
+
+/* Hover effects for clickable badges */
+.star-badge.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.star-badge.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.star-badge.clickable:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.star-badge.clickable:focus {
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
+}
+
+/* Animation for new rank achievement */
+@keyframes rankAchieved {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.star-badge.rank-achieved {
+  animation: rankAchieved 0.5s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .star-badge.size-medium,
+  .star-badge.size-large {
+    max-width: 100%;
+  }
+  
+  .badge-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .badge-icon-container {
+    margin: 0 auto;
+  }
 }
