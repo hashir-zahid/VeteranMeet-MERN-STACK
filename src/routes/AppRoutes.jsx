@@ -4,6 +4,9 @@ import Signup from "../components/Signup/Signup";
 import Home from "../pages/Home/Home";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Events from "../pages/Events/Events";
+import VeteranProfile from "../components/VeteranProfile/VeteranProfile";
+import StarBadge from "../components/StarBadge/StarBadge";
+import OrganizationProfile from "../components/OrganizationProfile/OrganizationProfile";
 
 function AppRoutes() {
   return (
@@ -13,6 +16,9 @@ function AppRoutes() {
       <Route path="/home" element={<Home />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/events" element={<Events />} />
+      <Route path="/VeteranProfile" element={<VeteranProfile />} />
+      <Route path="/StarBadge" element={<StarBadge/>} />
+      <Route path="/OrganizationProfile" element={<OrganizationProfile/>} />
     </Routes>
   );
 }
