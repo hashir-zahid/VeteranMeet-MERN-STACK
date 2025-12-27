@@ -1,1 +1,36 @@
-@import "../VeteranProfile/VeteranProfile.css";
+.followers-container {
+  background: #161b22;
+  border: 1px solid #30363d;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+}
+
+.followers-container h3 { color: #f0f6fc; margin-bottom: 20px; }
+
+.follower-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #21262d;
+}
+
+.avatar { width: 45px; height: 45px; border-radius: 50%; margin-right: 15px; }
+
+.follower-info { flex-grow: 1; display: flex; flex-direction: column; }
+
+.follower-name { color: #58a6ff; font-weight: bold; font-size: 14px; }
+
+.follower-role { color: #8b949e; font-size: 12px; }
+
+.btn-follow {
+  background: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-follow:hover { background: #30363d; }
