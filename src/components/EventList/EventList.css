@@ -1,1 +1,9 @@
-@import "../VeteranProfile/VeteranProfile.css";
+.event-list-page { padding: 40px; background-color: #0d1117; min-height: 100vh; }
+
+.event-list-page h1 { color: #f0f6fc; margin-bottom: 30px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
