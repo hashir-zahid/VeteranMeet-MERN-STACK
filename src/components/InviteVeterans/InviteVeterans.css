@@ -1,1 +1,42 @@
-@import "../VeteranProfile/VeteranProfile.css";
+.invite-container {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.invite-box {
+  background: #161b22;
+  border: 1px solid #30363d;
+  padding: 25px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.invite-box h3 { color: #f0f6fc; margin-bottom: 10px; }
+.invite-box p { color: #8b949e; font-size: 14px; margin-bottom: 20px; }
+
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; color: #c9d1d9; font-size: 13px; margin-bottom: 5px; }
+
+.input-group input, .input-group select, .input-group textarea {
+  width: 100%;
+  padding: 10px;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  color: white;
+  border-radius: 6px;
+}
+
+.btn-send-invite {
+  width: 100%;
+  padding: 12px;
+  background-color: #21262d;
+  color: #58a6ff;
+  border: 1px solid #30363d;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-send-invite:hover { background: #30363d; border-color: #8b949e; }
