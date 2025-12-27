@@ -1,6 +1,89 @@
 .footer {
-  background-color: #222;
-  color: white;
-  padding: 10px;
+  background-color: #161b22;
+  color: #8b949e;
+  padding: 40px 20px 20px 20px;
+  border-top: 1px solid #30363d;
+  margin-top: auto; /* Useful if using Flexbox on the parent container */
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-section h4 {
+  color: #58a6ff;
+  margin-bottom: 15px;
+}
+
+.footer-section h5 {
+  color: #f0f6fc;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.footer-section p {
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: #8b949e;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.footer-section ul li a:hover {
+  color: #58a6ff;
+}
+
+/* Social Icons Styling */
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: #c9d1d9;
+  font-size: 20px;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.social-icons a:hover {
+  color: #58a6ff;
+  transform: translateY(-3px);
+}
+
+/* Copyright Section */
+.footer-bottom {
   text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #21262d;
+  font-size: 12px;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
 }
