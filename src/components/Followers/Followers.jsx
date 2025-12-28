@@ -1,30 +1,36 @@
-import React from 'react';
-import './Followers.css';
+import React from "react";
+import "./Followers.css";
 
-const Followers = () => {
-  const followers = [
-    { name: 'John Doe', role: 'Veteran', image: 'https://via.placeholder.com/50' },
-    { name: 'NGO Save Earth', role: 'Organization', image: 'https://via.placeholder.com/50' },
-    { name: 'Jane Smith', role: 'Software Engineer', image: 'https://via.placeholder.com/50' }
-  ];
-
+const Followers = ({ followers }) => {
   return (
     <div className="followers-container">
-      <h3>Followers ({followers.length})</h3>
-      <div className="followers-list">
-        {followers.map((f, i) => (
-          <div key={i} className="follower-item">
-            <img src={f.image} alt="profile" className="avatar" />
-            <div className="follower-info">
-              <span className="follower-name">{f.name}</span>
-              <span className="follower-role">{f.role}</span>
-            </div>
-            <button className="btn-follow">Follow Back</button>
-          </div>
-        ))}
-      </div>
+      <h2 className="followers-title">Followers</h2>
+
+      {followers && followers.length > 0 ? (
+        <ul className="followers-list">
+          {followers.map((follower) => (
+            <li key={follower.id} className="follower-card">
+              <img
+                src={follower.avatar}
+                alt={follower.name}
+                className="follower-avatar"
+              />
+
+              <div className="follower-info">
+                <h4>{follower.name}</h4>
+                <p>{follower.rank || "Veteran Member"}</p>
+              </div>
+
+              <button className="follow-btn">View</button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="no-followers">No followers yet.</p>
+      )}
     </div>
   );
 };
 
 export default Followers;
+  
