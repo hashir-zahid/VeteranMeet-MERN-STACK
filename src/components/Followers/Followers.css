@@ -1,36 +1,32 @@
 .followers-container {
-  background: #161b22;
-  border: 1px solid #30363d;
+  background-color: #ffffff;
   padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin: auto;
 }
 
-.followers-container h3 { color: #f0f6fc; margin-bottom: 20px; }
+.followers-title {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+  color: #1f2937;
+  text-align: center;
+}
 
-.follower-item {
+.followers-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.follower-card {
   display: flex;
   align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #21262d;
+  justify-content: space-between;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  background-color: #f9fafb;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-.avatar { width: 45px; height: 45px; border-radius: 50%; margin-right: 15px; }
-
-.follower-info { flex-grow: 1; display: flex; flex-direction: column; }
-
-.follower-name { color: #58a6ff; font-weight: bold; font-size: 14px; }
-
-.follower-role { color: #8b949e; font-size: 12px; }
-
-.btn-follow {
-  background: #21262d;
-  color: #c9d1d9;
-  border: 1px solid #30363d;
-  padding: 5px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.btn-follow:hover { background: #30363d; }
