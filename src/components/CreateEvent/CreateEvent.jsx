@@ -1,45 +1,78 @@
 import React, { useState } from 'react';
+import { useEvents } from '../../context/EventContext';
 import './CreateEvent.css';
 
 const CreateEvent = () => {
-  const [formData, setFormData] = useState({ title: '', date: '', type: 'Meetup', description: '' });
+  const { addEvent } = useEvents(); // Get the function from Context
+  
+  const [formData, setFormData] = useState({
+    title: '',
+    date: '',
+    type: 'Motivational Talk', // Default based on project doc
+    description: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Event Created:", formData);
+
+    // Validation check
+    if (!formData.title || !formData.date) {
+      alert("Please fill in the title and date");
+      return;
+    }
+
+    // Call the context function to save to DB
+    addEvent(formData);
+
+    // Reset form after submission
+    setFormData({ title: '', date: '', type: 'Motivational Talk', description: '' });
+    alert("Event created and shared with followers!");
   };
 
   return (
     <div className="create-event-container">
-      <div className="create-event-card">
+      <form className="create-event-form" onSubmit={handleSubmit}>
         <h2>Create New Event</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Event Title</label>
-            <input type="text" placeholder="e.g. Plantation Drive" onChange={(e) => setFormData({...formData, title: e.target.value})} />
-          </div>
-          <div className="form-row">
-            <div className="form-group">
-              <label>Date</label>
-              <input type="date" onChange={(e) => setFormData({...formData, date: e.target.value})} />
-            </div>
-            <div className="form-group">
-              <label>Category</label>
-              <select onChange={(e) => setFormData({...formData, type: e.target.value})}>
-                <option>Meetup</option>
-                <option>Professional Task</option>
-                <option>Plantation Drive</option>
-                <option>Orphanage Visit</option>
-              </select>
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Description</label>
-            <textarea rows="4" placeholder="Describe the event goals..." onChange={(e) => setFormData({...formData, description: e.target.value})}></textarea>
-          </div>
-          <button type="submit" className="btn-submit">Launch Event</button>
-        </form>
-      </div>
+        
+        <label>Event Title</label>
+        <input 
+          name="title" 
+          value={formData.title} 
+          onChange={handleChange} 
+          placeholder="e.g. Professional Training" 
+        />
+
+        <label>Event Type</label>
+        <select name="type" value={formData.type} onChange={handleChange}>
+          <option>Motivational Talk</option>
+          <option>Professional Task</option>
+          <option>Plantation Drive</option>
+          <option>Orphanage Visit</option>
+          <option>Hospital Visit</option>
+        </select>
+
+        <label>Date</label>
+        <input 
+          type="date" 
+          name="date" 
+          value={formData.date} 
+          onChange={handleChange} 
+        />
+
+        <label>Description</label>
+        <textarea 
+          name="description" 
+          value={formData.description} 
+          onChange={handleChange} 
+          placeholder="Details for your followers..."
+        />
+
+        <button type="submit">Publish Event</button>
+      </form>
     </div>
   );
 };
