@@ -7,6 +7,7 @@ import Events from "../pages/Events/Events";
 import VeteranProfile from "../components/VeteranProfile/VeteranProfile";
 import StarBadge from "../components/StarBadge/StarBadge";
 import OrganizationProfile from "../components/OrganizationProfile/OrganizationProfile";
+import Followersfrom "../components/Followers/Followers";
 
 function AppRoutes() {
   return (
@@ -24,3 +25,4 @@ function AppRoutes() {
 }
 
 export default AppRoutes;
+
