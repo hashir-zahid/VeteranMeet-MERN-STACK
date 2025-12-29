@@ -20,9 +20,11 @@ function AppRoutes() {
       <Route path="/VeteranProfile" element={<VeteranProfile />} />
       <Route path="/StarBadge" element={<StarBadge/>} />
       <Route path="/OrganizationProfile" element={<OrganizationProfile/>} />
+      <Route path="/Followers" element={<Followers/>} />
     </Routes>
   );
 }
 
 export default AppRoutes;
+
 
