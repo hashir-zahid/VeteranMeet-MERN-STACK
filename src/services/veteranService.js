@@ -1,39 +1,64 @@
 // services/veteranService.js
 import api from "./api";
 
-// Create / Update Veteran Profile
-export const updateVeteranProfile = (data) => {
-  return api.put("/veterans/profile", data);
-};
+/*
+|--------------------------------------------------------------------------
+| VETERAN SERVICES – VeteranMeet
+|--------------------------------------------------------------------------
+| Profile, social feed, and networking
+*/
 
 // Get logged-in veteran profile
 export const getMyProfile = () => {
   return api.get("/veterans/me");
 };
 
-// Follow another veteran or organization
-export const followUser = (userId) => {
-  return api.post(`/veterans/follow/${userId}`);
+// Update veteran profile
+export const updateVeteranProfile = (profileData) => {
+  return api.put("/veterans/profile", profileData);
 };
 
-// Add or edit hobbies
+// Update hobbies / interests
 export const updateHobbies = (hobbies) => {
   return api.put("/veterans/hobbies", { hobbies });
 };
 
-// Create post (text / media / both)
+// Follow another veteran
+export const followVeteran = (veteranId) => {
+  return api.post(`/veterans/follow/${veteranId}`);
+};
+
+// Unfollow veteran
+export const unfollowVeteran = (veteranId) => {
+  return api.delete(`/veterans/unfollow/${veteranId}`);
+};
+
+// Get followers & following list
+export const getConnections = () => {
+  return api.get("/veterans/connections");
+};
+
+// Create a post (text / image / video)
 export const createPost = (postData) => {
-  return api.post("/veterans/post", postData);
+  return api.post("/posts", postData);
 };
 
-// Get feed (followed users posts)
+// Get social feed (followed veterans)
 export const getFeed = () => {
-  return api.get("/veterans/feed");
+  return api.get("/posts/feed");
 };
 
-// Get veteran stars & category
+// Like a post
+export const likePost = (postId) => {
+  return api.post(`/posts/${postId}/like`);
+};
+
+// Comment on a post
+export const commentOnPost = (postId, comment) => {
+  return api.post(`/posts/${postId}/comment`, { comment });
+};
+
+// Get veteran recognition (stars, badges, category)
 export const getVeteranStars = () => {
   return api.get("/veterans/stars");
 };
-                  
-
