@@ -3,56 +3,83 @@
 // ==============================
 // App Info
 // ==============================
-export const APP_NAME = "VeteranMeet";
+export const APP_CONFIG = {
+  NAME: "VeteranMeet",
+  VERSION: "1.0.0",
+};
+
+// ==============================
+// Environment
+// ==============================
+export const ENV = import.meta.env.MODE || "development";
 
 // ==============================
 // API Configuration
 // ==============================
-export const API_BASE_URL = "http://localhost:5000/api";
+export const API_CONFIG = {
+  BASE_URL:
+    import.meta.env.VITE_API_URL || "http://localhost:5000/api",
+  TIMEOUT: 10000,
+};
 
+// ==============================
 // API Endpoints
+// ==============================
 export const API_ENDPOINTS = {
-  AUTH: "/auth",
-  LOGIN: "/auth/login",
-  REGISTER: "/auth/register",
+  AUTH: {
+    BASE: "/auth",
+    LOGIN: "/auth/login",
+    REGISTER: "/auth/register",
+    PROFILE: "/auth/profile",
+  },
 
-  USERS: "/users",
-  VETERANS: "/veterans",
+  USERS: {
+    BASE: "/users",
+    BY_ID: (id) => `/users/${id}`,
+  },
 
-  EVENTS: "/events",
-  EVENT_BY_ID: (id) => `/events/${id}`,
+  VETERANS: {
+    BASE: "/veterans",
+    BY_ID: (id) => `/veterans/${id}`,
+  },
+
+  EVENTS: {
+    BASE: "/events",
+    BY_ID: (id) => `/events/${id}`,
+  },
 };
 
 // ==============================
 // User Roles
 // ==============================
-export const USER_ROLES = {
+export const USER_ROLES = Object.freeze({
   ADMIN: "admin",
   VETERAN: "veteran",
   USER: "user",
-};
+});
 
 // ==============================
 // Local Storage Keys
 // ==============================
-export const STORAGE_KEYS = {
+export const STORAGE_KEYS = Object.freeze({
   TOKEN: "veteranmeet_token",
   USER: "veteranmeet_user",
-};
+});
 
 // ==============================
 // Date Formats
 // ==============================
 export const DATE_FORMATS = {
-  DISPLAY: "DD MMM YYYY",
+  SHORT: "DD MMM YYYY",
   FULL: "DD MMM YYYY, hh:mm A",
 };
 
 // ==============================
 // UI Messages
 // ==============================
-export const MESSAGES = {
+export const UI_MESSAGES = {
   LOADING: "Loading, please wait...",
-  ERROR: "Something went wrong. Please try again.",
+  ERROR_GENERIC: "Something went wrong. Please try again.",
+  UNAUTHORIZED: "You are not authorized to perform this action.",
   NO_DATA: "No data available",
-};
+  LOGIN_REQUIRED: "Please login to continue"_
