@@ -1,49 +1,57 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const EventContext = createContext();
 
 export const EventProvider = ({ children }) => {
   const [events, setEvents] = useState([]);
+  const API_URL = "http://localhost:5000/api/events";
 
-  // 1. Load existing events from the Database on startup
+  // Fetch all VeteranMeet events
   useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/api/events');
-        const data = await response.json();
-        setEvents(data);
-      } catch (error) {
-        console.error("Error fetching events:", error);
-      }
-    };
     fetchEvents();
   }, []);
 
-  // 2. Function to add a new event to the Database and UI
-  const addEvent = async (newEvent) => {
+  const fetchEvents = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/events', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newEvent)
-      });
-      
-      if (response.ok) {
-        const savedEvent = await response.json();
-        // Update the local state so the UI refreshes instantly
-        setEvents((prevEvents) => [...prevEvents, savedEvent]);
-      }
+      const res = await fetch(API_URL);
+      const data = await res.json();
+      setEvents(data);
     } catch (error) {
-      console.error("Error saving event:", error);
+      console.error("Failed to load events:", error);
+    }
+  };
+
+  // Add new event (Admin only)
+  const addEvent = async (eventData) => {
+    try {
+      const token = localStorage.getItem("veteranToken");
+
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(eventData),
+      });
+
+      if (!res.ok) {
+        throw new Error("Event creation failed");
+      }
+
+      const newEvent = await res.json();
+      setEvents((prev) => [...prev, newEvent]);
+    } catch (error) {
+      console.error("Add event error:", error);
     }
   };
 
   return (
-    <EventContext.Provider value={{ events, addEvent }}>
+    <EventContext.Provider value={{ events, addEvent, fetchEvents }}>
       {children}
     </EventContext.Provider>
   );
 };
 
-// Custom hook for easy access
+// Custom hook
 export const useEvents = () => useContext(EventContext);
