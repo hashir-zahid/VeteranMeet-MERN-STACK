@@ -1,77 +1,123 @@
-import React, { useState } from 'react';
-import { useEvents } from '../../context/EventContext';
-import './CreateEvent.css';
+import { useState } from "react";
+import "./CreateEvent.css";
 
 const CreateEvent = () => {
-  const { addEvent } = useEvents(); // Get the function from Context
-  
   const [formData, setFormData] = useState({
-    title: '',
-    date: '',
-    type: 'Motivational Talk', // Default based on project doc
-    description: ''
+    title: "",
+    date: "",
+    time: "",
+    location: "",
+    category: "",
+    description: "",
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validation check
-    if (!formData.title || !formData.date) {
-      alert("Please fill in the title and date");
-      return;
-    }
+    // Later you will connect this to Express API
+    console.log("Event Created:", formData);
 
-    // Call the context function to save to DB
-    addEvent(formData);
+    alert("Event created successfully!");
 
-    // Reset form after submission
-    setFormData({ title: '', date: '', type: 'Motivational Talk', description: '' });
-    alert("Event created and shared with followers!");
+    setFormData({
+      title: "",
+      date: "",
+      time: "",
+      location: "",
+      category: "",
+      description: "",
+    });
   };
 
   return (
     <div className="create-event-container">
+      <h2>Create New Event</h2>
+
       <form className="create-event-form" onSubmit={handleSubmit}>
-        <h2>Create New Event</h2>
-        
-        <label>Event Title</label>
-        <input 
-          name="title" 
-          value={formData.title} 
-          onChange={handleChange} 
-          placeholder="e.g. Professional Training" 
-        />
+        <div className="form-group">
+          <label>Event Title</label>
+          <input
+            type="text"
+            name="title"
+            placeholder="Enter event title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <label>Event Type</label>
-        <select name="type" value={formData.type} onChange={handleChange}>
-          <option>Motivational Talk</option>
-          <option>Professional Task</option>
-          <option>Plantation Drive</option>
-          <option>Orphanage Visit</option>
-          <option>Hospital Visit</option>
-        </select>
+        <div className="form-row">
+          <div className="form-group">
+            <label>Date</label>
+            <input
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <label>Date</label>
-        <input 
-          type="date" 
-          name="date" 
-          value={formData.date} 
-          onChange={handleChange} 
-        />
+          <div className="form-group">
+            <label>Time</label>
+            <input
+              type="time"
+              name="time"
+              value={formData.time}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
 
-        <label>Description</label>
-        <textarea 
-          name="description" 
-          value={formData.description} 
-          onChange={handleChange} 
-          placeholder="Details for your followers..."
-        />
+        <div className="form-group">
+          <label>Location</label>
+          <input
+            type="text"
+            name="location"
+            placeholder="Event location"
+            value={formData.location}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <button type="submit">Publish Event</button>
+        <div className="form-group">
+          <label>Category</label>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select category</option>
+            <option value="Seminar">Seminar</option>
+            <option value="Workshop">Workshop</option>
+            <option value="Meetup">Meetup</option>
+            <option value="Training">Training</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Description</label>
+          <textarea
+            name="description"
+            placeholder="Describe the event"
+            rows="4"
+            value={formData.description}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <button type="submit" className="submit-btn">
+          Create Event
+        </button>
       </form>
     </div>
   );
